@@ -16,7 +16,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { publisherSlug, eventSlug } = context.params;
 
   const data = await fetch(
-    `http://localhost:3000/ssr/${context.params.publisherSlug}/${context.params.eventSlug}`,
+    `https://sandbox.arena.im/ssr/${context.params.publisherSlug}/${context.params.eventSlug}`,
     {
       headers: {
         "user-agent": context.req.headers["user-agent"],
