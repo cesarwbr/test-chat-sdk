@@ -10,6 +10,7 @@ const SSR: FC<{ html: string }> = ({ html }) => {
           padding: 0;
           margin: 0;
           font-family: "Austin News Text Roman", Georgia, Times, serif;
+          line-height: 25px;
         }
 
         blockquote {
