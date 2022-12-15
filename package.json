@@ -8,8 +8,8 @@
     "start": "next start"
   },
   "dependencies": {
-    "@arena-im/chat-sdk": "2.0.15-beta.14",
-    "@arena-im/chat-types": "2.0.15-beta.14",
+    "@arena-im/chat-sdk": "3.0.0-beta.13",
+    "@arena-im/chat-types": "3.0.0-beta.13",
     "next": "10.0.8",
     "react": "17.0.1",
     "react-dom": "17.0.1"

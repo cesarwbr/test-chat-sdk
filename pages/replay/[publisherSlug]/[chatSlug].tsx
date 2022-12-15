@@ -1,7 +1,8 @@
+import { useRouter } from "next/router";
 import { BaseChannel, BaseLiveChat } from "@arena-im/chat-types";
 import ArenaChat from "@arena-im/chat-sdk";
-import history from "../resources/history.json";
-import newStrings from "../resources/new-strings.json";
+import history from "../../../resources/history.json";
+import newStrings from "../../../resources/new-strings.json";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 
 function generateNewMessages(allMessages, newStrings) {
@@ -44,18 +45,24 @@ export default function App() {
   );
   const [maxTime, setMaxTime] = useState<number | null>(null);
   const timeoutId = useRef<number | null>(null);
+  const router = useRouter();
+  const { publisherSlug, chatSlug } = router.query;
 
   useEffect(() => {
     async function intializeChat() {
-      arenaChat.current = new ArenaChat("new-business-3");
-      liveChat.current = await arenaChat.current.getLiveChat("eOJNjxp");
+      arenaChat.current = new ArenaChat(publisherSlug as string);
+      liveChat.current = await arenaChat.current.getLiveChat(
+        chatSlug as string
+      );
       if (liveChat.current !== null) {
         channel.current = await liveChat.current.getMainChannel();
       }
     }
 
-    intializeChat();
-  }, []);
+    if (publisherSlug && chatSlug) {
+      intializeChat();
+    }
+  }, [publisherSlug, chatSlug]);
 
   async function sendMessage(message: any) {
     if (channel.current === null || arenaChat.current === null) {
